@@ -1,0 +1,66 @@
+let stockProductos = [
+  {
+    id: 1,
+    nombre: "Bajaj Rouser NS200",
+    precio: 2500,
+    cantidad: 1,
+
+    img: "../images/ns200.jpg",
+  },
+  {
+    id: 2,
+    nombre: "Honda CB190",
+    precio: 2000,
+    cantidad: 1,
+
+    img: "../images/cb190.jpg",
+  },
+  {
+    id: 3,
+    nombre: "Yamaha XTZ 190",
+    precio: 2200,
+    cantidad: 1,
+
+    img: "../images/xtz190.jpg",
+  },
+  {
+    id: 4,
+    nombre: "Honda CB250",
+    precio: 3000,
+    cantidad: 1,
+
+    img: "../images/twister250.jpg",
+  },
+  {
+    id: 5,
+    nombre: "Yamaha FZ25",
+    precio: 2800,
+    cantidad: 1,
+
+    img: "../images/fz25.jpg",
+  },
+  {
+    id: 6,
+    nombre: "Honda Tornado 250",
+    precio: 2900,
+    cantidad: 1,
+
+    img: "../images/tornado.jpg",
+  },
+  {
+    id: 7,
+    nombre: "Bajaj Dominar 250",
+    precio: 3500,
+    cantidad: 1,
+
+    img: "../images/dominar250.jpg",
+  },
+  {
+    id: 8,
+    nombre: "Bajaj Dominar 400",
+    precio: 4500,
+    cantidad: 1,
+
+    img: "../images/dominar400.jpg",
+  },
+];
