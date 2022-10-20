@@ -1,4 +1,5 @@
 let stockProductos = [];
+let carrito2 = [];
 const mostrarProductos = (productos) => {
   productos.forEach((producto) => {
     const div = document.createElement("div");
@@ -38,9 +39,9 @@ const cantidadTotal = document.getElementById("cantidadTotal");
 
 let carrito = [];
 
-document.addEventListener("DOMContentLoaded", async() => {
-     stockProductos = await controlador();
-    mostrarProductos(stockProductos);
+document.addEventListener("DOMContentLoaded", async () => {
+  stockProductos = await controlador();
+  mostrarProductos(stockProductos);
   if (localStorage.getItem("carrito")) {
     carrito = JSON.parse(localStorage.getItem("carrito"));
     actualizarCarrito();
@@ -60,6 +61,7 @@ botonVaciar.addEventListener("click", () => {
     }).then((result) => {
       if (result.isConfirmed) {
         carrito.length = 0;
+        carrito2.length = 0;
         localStorage.clear();
         actualizarCarrito();
         Swal.fire("¡Carrito vacío!", "El carrito ha sido vaciado con éxito");
@@ -76,6 +78,9 @@ botonVaciar.addEventListener("click", () => {
 });
 
 const agregarAlCarrito = (prodId) => {
+  const item = stockProductos.find((prod) => prod.id === prodId);
+
+  carrito2.push(item);
   const existe = carrito.some((prod) => prod.id === prodId);
 
   if (existe) {
@@ -85,7 +90,6 @@ const agregarAlCarrito = (prodId) => {
       }
     });
   } else {
-    const item = stockProductos.find((prod) => prod.id === prodId);
     carrito.push(item);
   }
   actualizarCarrito();
@@ -101,8 +105,11 @@ const agregarAlCarrito = (prodId) => {
 
 const eliminarDelCarrito = (prodId) => {
   const item = carrito.find((prod) => prod.id === prodId);
+  const item2 = carrito2.find((prod) => prod.id === prodId);
+  const indice2 = carrito2.indexOf(item2);
 
   const indice = carrito.indexOf(item);
+  carrito2.splice(indice2, 1);
 
   carrito.splice(indice, 1);
   actualizarCarrito();
@@ -132,7 +139,7 @@ const actualizarCarrito = () => {
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
   });
-  contadorCarrito.innerText = carrito.length;
+  contadorCarrito.innerText = carrito2.length;
   precioTotal.innerText = carrito.reduce(
     (acc, prod) => acc + prod.cantidad * prod.precio,
     0
