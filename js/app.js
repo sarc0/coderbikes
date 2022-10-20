@@ -1,3 +1,4 @@
+let stockProductos = [];
 const mostrarProductos = (productos) => {
   productos.forEach((producto) => {
     const div = document.createElement("div");
@@ -38,8 +39,8 @@ const cantidadTotal = document.getElementById("cantidadTotal");
 let carrito = [];
 
 document.addEventListener("DOMContentLoaded", async() => {
-    const productos = await controlador();
-    mostrarProductos(productos);
+     stockProductos = await controlador();
+    mostrarProductos(stockProductos);
   if (localStorage.getItem("carrito")) {
     carrito = JSON.parse(localStorage.getItem("carrito"));
     actualizarCarrito();
@@ -78,7 +79,7 @@ const agregarAlCarrito = (prodId) => {
   const existe = carrito.some((prod) => prod.id === prodId);
 
   if (existe) {
-    const prod = carrito.map((prod) => {
+    carrito.map((prod) => {
       if (prod.id === prodId) {
         prod.cantidad++;
       }
